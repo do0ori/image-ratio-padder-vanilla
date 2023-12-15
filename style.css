@@ -141,7 +141,7 @@
 /**************************************************************************/
 /*           https://uiverse.io/NorthFishHasNa/soft-turtle-49             */
 /**************************************************************************/
-.processBtn {
+.downlodBtn {
  display: inline-block;
  border-radius: 4px;
  background-color: #3d405b;
@@ -156,14 +156,14 @@
  /* margin: 5px; */
 }
 
-.processBtn span {
+.downlodBtn span {
  cursor: pointer;
  display: inline-block;
  position: relative;
  transition: 0.5s;
 }
 
-.processBtn span:after {
+.downlodBtn span:after {
  content: '»';
  position: absolute;
  opacity: 0;
@@ -172,11 +172,11 @@
  transition: 0.5s;
 }
 
-.processBtn:hover span {
+.downlodBtn:hover span {
  padding-right: 15px;
 }
 
-.processBtn:hover span:after {
+.downlodBtn:hover span:after {
  opacity: 1;
  right: 0;
 }

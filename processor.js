@@ -9,6 +9,18 @@ const clearRatioField = () => {
     document.getElementById('ratioHeight').value = '';
 }
 
+const clearBtnAttributes = () => {
+    const downloadBtn = document.querySelector('#downlodBtn > a');
+    downloadBtn.removeAttribute('href')
+    downloadBtn.removeAttribute('download')
+}
+
+const setBtnAttributes = (href, fileName) => {
+    const downloadBtn = document.querySelector('#downlodBtn > a');
+    downloadBtn.href = href;
+    downloadBtn.download = fileName;
+}
+
 const showOriginalImage = (originalImage) => {
     const ImageContainer = document.getElementById('ImageContainer');
     ImageContainer.innerHTML = ''; // Initialize container
@@ -83,6 +95,19 @@ const padImage = (image, ratio, backgroundColor) => {
     return canvas.toDataURL('image/jpeg');
 }
 
+function getCurrentDateTimeFormatted() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1을 해줌
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+
+    const formattedDateTime = `${year}${month}${day}_${hours}${minutes}${seconds}`;
+    return formattedDateTime;
+}
+
 const radioGroupName = 'imageSubmitType';
 const processImage = () => {
     // Get ratio
@@ -98,12 +123,9 @@ const processImage = () => {
         const processedDataURL = padImage(loadedImage, imageRatio, paddingColor);
         const processedImage = new Image();
         processedImage.src = processedDataURL;
-        const downloadImage = document.createElement('a');  // Apply download link to processed image
-        downloadImage.href = processedDataURL;
-        downloadImage.download = 'processed_image.jpg';
-        downloadImage.appendChild(processedImage);
         ImageContainer.innerHTML = ''; // Initialize container
-        ImageContainer.appendChild(downloadImage);
+        ImageContainer.appendChild(processedImage);
+        setBtnAttributes(processedDataURL, `processed_image_${getCurrentDateTimeFormatted()}.jpg`);
     } else {
         clearOutputField();
         clearRatioField();
@@ -123,8 +145,8 @@ const showInputField = (event) => {
             urlToImage(userImage, showOriginalImage)
         };
     }
-    // document.getElementById('processBtn').style.visibility = 'visible';
     clearRatioField();
+    clearBtnAttributes();
 }
 
 for (const radioInput of document.getElementsByClassName('radio-input')) {
@@ -138,7 +160,6 @@ document.getElementById('imagefile').addEventListener("change", () => {
         fileToImage(imageFile, showOriginalImage);
     }
 });
-document.getElementsByClassName('processBtn')[0].addEventListener("click", processImage);
 
 // Immdiately display processed image whenever input value changes.
 document.getElementById('ratio').addEventListener("change", processImage)
