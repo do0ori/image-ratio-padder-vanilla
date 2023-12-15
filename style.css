@@ -148,12 +148,12 @@
  border: none;
  color: #FFFFFF;
  text-align: center;
- font-size: 13px;
+ font-size: 15px;
  padding: 16px;
- width: 150px;
+ width: 320px;
  transition: all 0.5s;
  cursor: pointer;
- /* margin: 5px; */
+ margin-top: 20px;
 }
 
 .downlodBtn span {
@@ -340,3 +340,8 @@ div {
     max-height: 100%;
 }
 
+.contact-section {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
