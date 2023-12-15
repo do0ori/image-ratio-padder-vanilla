@@ -3,7 +3,7 @@
 
 ## Motivation Behind the Project
 velog에 매일 TIL을 작성하고 있는데 thumbnail 잘림이 거슬려서 만들게 되었습니다. velog thumbnail 이미지 비율(1.91:1)에 맞지 않는 이미지를 업로드하면 강제로 화면을 채우게 되면서 thumbnail 이미지가 잘려서 보이게 됩니다.
-초기에는 간단하게 [google colab에 python으로 코드를 작성](https://colab.research.google.com/drive/1IagwBSuHEUcfWeuASyWGF61sLjHKUKwK#scrollTo=Fua4pold15aP)해서 사용했었는데 웹에서 사용할 수 있도록 하는 편이 접근선이나 활용도가 높을 것 같아 프로젝트를 시작하게 되었습니다.
+초기에는 간단하게 [google colab에 python으로 코드를 작성](https://colab.research.google.com/drive/1IagwBSuHEUcfWeuASyWGF61sLjHKUKwK#scrollTo=Fua4pold15aP)해서 사용했었는데 웹에서 사용할 수 있도록 하는 편이 접근성이나 활용도가 높을 것 같아 프로젝트를 시작하게 되었습니다.
 
 ## Usage
 0. [Image Ratio Padder 바로가기](https://do0ori.github.io/image-ratio-padder/)
@@ -16,9 +16,11 @@ velog에 매일 TIL을 작성하고 있는데 thumbnail 잘림이 거슬려서 �
 - 사용자가 지정한 색상으로 확장된 부분을 채웁니다.
 
 ## Technology Stack
-<img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-<img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black">
+<p>
+    <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+    <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black">
+</p>
 
 ## Contributions
 버그를 발견하거나 새로운 기능을 제안은 언제나 환영입니다! [이슈](https://github.com/do0ori/image-ratio-padder/issues)를 작성해주세요.
