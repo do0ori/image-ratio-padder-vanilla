@@ -1,10 +1,8 @@
 const testImageURL = "https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg";
+let userImageURL = null;
+let loadedImage = null;
 
 const clearOutputField = () => document.getElementById('ImageContainer').innerHTML = '';
-
-const fillFileName = () => {
-    document.getElementById('fileName').innerText = document.getElementById('imagefile').files[0].name;
-}
 
 const clearRatioField = () => {
     document.getElementById('ratioWidth').value = '';
@@ -16,16 +14,24 @@ const showInputPrompt = () => {
     document.getElementById('imageUrl').value = imageUrl;
 }
 
+const showOriginalImage = (originalImage) => {
+    const ImageContainer = document.getElementById('ImageContainer');
+    ImageContainer.innerHTML = ''; // Initialize container
+    ImageContainer.appendChild(originalImage);
+    loadedImage = originalImage;
+}
+
 const showInputField = (event) => {
-    const inputField = document.getElementById('input-field');
-    inputField.style.visibility = 'visible';
+    document.getElementById('input-field').style.visibility = 'visible';
     if (event.target.value === 'upload') {
         document.getElementById('imagefile').click();
     } else if (event.target.value === 'url') {
-        showInputPrompt();
+        // Get image url from user, convert url to image and show it.
+        userImageURL = prompt("Image URL:", testImageURL);
+        if (userImageURL) urlToImage(userImageURL, showOriginalImage);
+        return;
     }
     document.getElementById('processBtn').style.visibility = 'visible';
-    clearOutputField(); // Initialize containers
 }
 
 const urlToImage = (url, callback) => {
@@ -97,41 +103,30 @@ const padImage = (image, ratio, backgroundColor) => {
 
 const radioGroupName = 'imageSubmitType';
 const processImage = () => {
+    // Get ratio
     const wr = document.getElementById('ratioWidth').value;
     const hr = document.getElementById('ratioHeight').value;
     const imageRatio = [];
     // Default to 1 if not provided
     imageRatio.push(wr ? Number(wr) : 1);
     imageRatio.push(hr ? Number(hr) : 1);
+    // Get 
     const checkedRadio = document.querySelector(`input[name=${radioGroupName}]:checked`); // Get checked radio element
     let srcImage = null;
-    let converter = null;
-    if (checkedRadio.value === 'upload') {
-        srcImage = document.getElementById('imagefile').files[0];
-        converter = fileToImage;
-        if (!srcImage) {
-            srcImage = testImageURL;
-            converter = urlToImage;
-        }
-    } else if (checkedRadio.value === 'url') {
-        srcImage = document.getElementById('imageUrl').value;
-        converter = urlToImage;
-    }
+    if (checkedRadio.value === 'upload') srcImage = document.getElementById('imagefile').files[0];
+    else if (checkedRadio.value === 'url') srcImage = userImageURL;
     if (srcImage && imageRatio.length === 2 && imageRatio.every(val => val >= 0)) {
-        converter(srcImage, (originalImage) => {
-            const ImageContainer = document.getElementById('ImageContainer');
-            ImageContainer.innerHTML = ''; // Initialize container
-
-            const paddingColor = document.getElementById('bgColor').value;
-            const processedDataURL = padImage(originalImage, imageRatio, paddingColor);
-            const processedImage = new Image();
-            processedImage.src = processedDataURL;
-            const downloadImage = document.createElement('a');  // Apply download link to processed image
-            downloadImage.href = processedDataURL;
-            downloadImage.download = 'processed_image.jpg';
-            downloadImage.appendChild(processedImage);
-            ImageContainer.appendChild(downloadImage);
-        });
+        const ImageContainer = document.getElementById('ImageContainer');
+        const paddingColor = document.getElementById('bgColor').value;
+        const processedDataURL = padImage(loadedImage, imageRatio, paddingColor);
+        const processedImage = new Image();
+        processedImage.src = processedDataURL;
+        const downloadImage = document.createElement('a');  // Apply download link to processed image
+        downloadImage.href = processedDataURL;
+        downloadImage.download = 'processed_image.jpg';
+        downloadImage.appendChild(processedImage);
+        ImageContainer.innerHTML = ''; // Initialize container
+        ImageContainer.appendChild(downloadImage);
     } else {
         clearOutputField();
         clearRatioField();
@@ -140,8 +135,8 @@ const processImage = () => {
 }
 
 for (const radioInput of document.getElementsByClassName('radio-input')) {
-    radioInput.addEventListener("click", showInputField)
+    radioInput.addEventListener("click", showInputField);
 }
 
-document.getElementById('imagefile').addEventListener("change", fillFileName)
-document.getElementsByClassName('processBtn')[0].addEventListener("click", processImage)
+document.getElementById('imagefile').addEventListener("change", () => fileToImage(document.getElementById('imagefile').files[0], showOriginalImage));
+document.getElementsByClassName('processBtn')[0].addEventListener("click", processImage);
