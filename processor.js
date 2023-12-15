@@ -1,5 +1,5 @@
 const testImageURL = "https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg";
-let userImageURL = null;
+let userImage = null;
 let loadedImage = null;
 
 const clearOutputField = () => document.getElementById('ImageContainer').innerHTML = '';
@@ -9,29 +9,11 @@ const clearRatioField = () => {
     document.getElementById('ratioHeight').value = '';
 }
 
-const showInputPrompt = () => {
-    let imageUrl = prompt("Image URL:", testImageURL);
-    document.getElementById('imageUrl').value = imageUrl;
-}
-
 const showOriginalImage = (originalImage) => {
     const ImageContainer = document.getElementById('ImageContainer');
     ImageContainer.innerHTML = ''; // Initialize container
     ImageContainer.appendChild(originalImage);
     loadedImage = originalImage;
-}
-
-const showInputField = (event) => {
-    document.getElementById('input-field').style.visibility = 'visible';
-    if (event.target.value === 'upload') {
-        document.getElementById('imagefile').click();
-    } else if (event.target.value === 'url') {
-        // Get image url from user, convert url to image and show it.
-        userImageURL = prompt("Image URL:", testImageURL);
-        if (userImageURL) urlToImage(userImageURL, showOriginalImage);
-        return;
-    }
-    document.getElementById('processBtn').style.visibility = 'visible';
 }
 
 const urlToImage = (url, callback) => {
@@ -110,12 +92,7 @@ const processImage = () => {
     // Default to 1 if not provided
     imageRatio.push(wr ? Number(wr) : 1);
     imageRatio.push(hr ? Number(hr) : 1);
-    // Get 
-    const checkedRadio = document.querySelector(`input[name=${radioGroupName}]:checked`); // Get checked radio element
-    let srcImage = null;
-    if (checkedRadio.value === 'upload') srcImage = document.getElementById('imagefile').files[0];
-    else if (checkedRadio.value === 'url') srcImage = userImageURL;
-    if (srcImage && imageRatio.length === 2 && imageRatio.every(val => val >= 0)) {
+    if (userImage && imageRatio.length === 2 && imageRatio.every(val => val >= 0)) {
         const ImageContainer = document.getElementById('ImageContainer');
         const paddingColor = document.getElementById('bgColor').value;
         const processedDataURL = padImage(loadedImage, imageRatio, paddingColor);
@@ -134,9 +111,35 @@ const processImage = () => {
     }
 }
 
+const showInputField = (event) => {
+    document.getElementById('input-field').style.visibility = 'visible';
+    if (event.target.value === 'upload') {
+        document.getElementById('imagefile').click();
+    } else if (event.target.value === 'url') {
+        // Get image url from user, convert url to image and show it.
+        let imageURL = prompt("Image URL:", testImageURL);
+        if (imageURL) {
+            userImage = imageURL;
+            urlToImage(userImage, showOriginalImage)
+        };
+    }
+    // document.getElementById('processBtn').style.visibility = 'visible';
+    clearRatioField();
+}
+
 for (const radioInput of document.getElementsByClassName('radio-input')) {
     radioInput.addEventListener("click", showInputField);
 }
 
-document.getElementById('imagefile').addEventListener("change", () => fileToImage(document.getElementById('imagefile').files[0], showOriginalImage));
+document.getElementById('imagefile').addEventListener("change", () => {
+    const imageFile = document.getElementById('imagefile').files[0];
+    if (imageFile) {
+        userImage = imageFile.name;
+        fileToImage(imageFile, showOriginalImage);
+    }
+});
 document.getElementsByClassName('processBtn')[0].addEventListener("click", processImage);
+
+// Immdiately display processed image whenever input value changes.
+document.getElementById('ratio').addEventListener("change", processImage)
+document.getElementById('colorPicker').addEventListener("change", processImage)
