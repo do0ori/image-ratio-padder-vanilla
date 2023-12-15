@@ -1,9 +1,6 @@
 const testImageURL = "https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg";
 
-const clearOutputField = () => {
-    document.getElementById('originalImageContainer').innerHTML = '';
-    document.getElementById('processedImageContainer').innerHTML = '';
-}
+const clearOutputField = () => document.getElementById('ImageContainer').innerHTML = '';
 
 const fillFileName = () => {
     document.getElementById('fileName').innerText = document.getElementById('imagefile').files[0].name;
@@ -133,12 +130,8 @@ const processImage = () => {
     }
     if (srcImage && imageRatio.length === 2 && imageRatio.every(val => val >= 0)) {
         converter(srcImage, (originalImage) => {
-            const originalImageContainer = document.getElementById('originalImageContainer');
-            originalImageContainer.innerHTML = '<h3>Original Image</h3>';   // Initialize container
-            originalImageContainer.appendChild(originalImage);
-
-            const processedImageContainer = document.getElementById('processedImageContainer');
-            processedImageContainer.innerHTML = '<h3>Processed Image</h3>'; // Initialize container
+            const ImageContainer = document.getElementById('ImageContainer');
+            ImageContainer.innerHTML = ''; // Initialize container
 
             const paddingColor = document.getElementById('bgColor').value;
             const processedDataURL = padImage(originalImage, imageRatio, paddingColor);
@@ -148,7 +141,7 @@ const processImage = () => {
             downloadImage.href = processedDataURL;
             downloadImage.download = 'processed_image.jpg';
             downloadImage.appendChild(processedImage);
-            processedImageContainer.appendChild(downloadImage);
+            ImageContainer.appendChild(downloadImage);
         });
     } else {
         clearOutputField();

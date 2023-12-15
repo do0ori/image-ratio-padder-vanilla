@@ -335,8 +335,7 @@ div {
   padding-right: 10%; */
 }
 
-#originalImageContainer img,
-#processedImageContainer img {
+#ImageContainer img {
     max-width: 100%;
     max-height: 100%;
 }
