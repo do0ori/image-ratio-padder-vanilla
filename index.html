@@ -34,7 +34,7 @@
             </div>
             <div class="visibility-hidden" id="input-field">
                 <div id="ratio">
-                    <label for="ratioWidth">Image Ratio (width : height)</label>
+                    <label for="ratioWidth">Image Ratio (w : h)</label>
                     <!-- <select name="platforms" id="options">
                         <option value="1:1">1:1</option>
                         <option value="9:16">9:16</option>
@@ -43,9 +43,11 @@
                         <option value="2:3">2:3</option>
                         <option value="1.91:1">1.91:1</option>
                     </select> -->
-                    <input type="text" id="ratioWidth" class="textInput" placeholder="1">
-                    <span>:</span>
-                    <input type="text" id="ratioHeight" class="textInput" placeholder="1">
+                    <div class="ratio-inputs">
+                        <input type="text" id="ratioWidth" class="textInput" placeholder="1">
+                        <span>:</span>
+                        <input type="text" id="ratioHeight" class="textInput" placeholder="1">
+                    </div>
                 </div>
                 <div id="colorPicker">
                     <label for="bgColor">Padding Color</label>

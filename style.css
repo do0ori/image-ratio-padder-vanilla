@@ -116,7 +116,7 @@
 /*          https://uiverse.io/ErzenXz/horrible-rattlesnake-14            */
 /**************************************************************************/
 .textInput {
-  width: 20px;
+  width: 40px;
   padding: 8px;
   border-radius: 4px;
   border: 1.5px solid lightgrey;
@@ -344,4 +344,13 @@ div {
   position: fixed;
   top: 10px;
   left: 10px;
+}
+
+#ratio {
+  display: flex;
+  align-items: center;
+}
+
+.ratio-inputs {
+  margin-left: 15px;
 }
