@@ -19,17 +19,6 @@ const showInputPrompt = () => {
 const showInputField = (event) => {
     const inputField = document.getElementById('input-field');
     inputField.style.visibility = 'visible';
-    // const withUpload = document.getElementById('withUpload');
-    // const withUrl = document.getElementById('withUrl');
-    // if (event.target.value === 'upload') {
-    //     withUpload.style.display = 'block';
-    //     withUrl.style.display = 'none';
-    //     document.getElementById('imagefile').value = '';    // Initialize file input
-    // } else if (event.target.value === 'url') {
-    //     withUpload.style.display = 'none';
-    //     withUrl.style.display = 'block';
-    //     document.getElementById('imageUrl').value = '';  // Initialize url input
-    // }
     if (event.target.value === 'upload') {
         document.getElementById('imagefile').click();
     } else if (event.target.value === 'url') {

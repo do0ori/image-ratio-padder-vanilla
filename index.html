@@ -32,17 +32,6 @@
                 </label>
             </div>
             <div class="visibility-hidden" id="input-field">
-                <div id="withUpload" class="display-hidden">
-                    <button class="uploadBtn">
-                        <label for="imagefile">Upload File</label>
-                    </button>
-                    <span id="fileName"></span>
-                    <input class="display-hidden" type="file" id="imagefile" accept="image/*">
-                </div>
-                <div id="withUrl" class="display-hidden">
-                    <label for="imageUrl">Image URL</label>
-                    <input type="url" id="imageUrl" class="textInput" style="width: 216px;" placeholder="https://domain.com/example.jpg">
-                </div>
                 <div id="ratio">
                     <label for="ratioWidth">Image Ratio (width : height)</label>
                     <!-- <select name="platforms" id="options">
@@ -67,6 +56,8 @@
                     </button>
                 </div>
             </div>
+            <input class="display-hidden" type="file" id="imagefile" accept="image/*">
+            <span class="display-hidden" id="imageUrl"></span>
         </div>
         <div class="loader display-hidden">
             <div class="bar1"></div>
