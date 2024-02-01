@@ -45,6 +45,7 @@ const urlToImage = (url, callback) => {
             reader.readAsDataURL(blob);
         })
         .catch(error => {
+            loader.style.display = 'none';
             console.error('Error fetching image:', error);
             alert('Error loading image from URL. Please check the URL and try again.');
         });
