@@ -25,4 +25,4 @@ velog에 매일 TIL을 작성하고 있는데 thumbnail 잘림이 거슬려서 �
 </p>
 
 ## Contributions
-버그를 발견하거나 새로운 기능을 제안은 언제나 환영입니다! [이슈](https://github.com/do0ori/image-ratio-padder/issues)를 작성해주세요.
+버그를 발견하거나 새로운 기능을 제안하는 것은 언제나 환영입니다! [이슈](https://github.com/do0ori/image-ratio-padder/issues)를 작성해주세요.
