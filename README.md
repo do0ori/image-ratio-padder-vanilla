@@ -1,4 +1,4 @@
-# 🖼️Image Ratio Padder
+# 🖼️ Image Ratio Padder
 사용자가 이미지, 이미지 비율, 색상을 입력하면 해당 이미지의 원본 크기를 유지하되 입력 받은 이미지 비율에 맞게 나머지 부분을 입력한 색상으로 채워주는 웹 애플리케이션입니다.
 
 ## Motivation Behind the Project
