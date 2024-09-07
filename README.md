@@ -6,7 +6,7 @@ velog에 매일 TIL을 작성하고 있는데 thumbnail 잘림이 거슬려서 �
 초기에는 간단하게 [google colab에 python으로 코드를 작성](https://colab.research.google.com/drive/1IagwBSuHEUcfWeuASyWGF61sLjHKUKwK#scrollTo=Fua4pold15aP)해서 사용했었는데 웹에서 사용할 수 있도록 하는 편이 접근성이나 활용도가 높을 것 같아 프로젝트를 시작하게 되었습니다.
 
 ## Usage
-🔗[Image Ratio Padder 바로가기](https://github.com/do0ori/image-ratio-padder-vanilla)
+🔗[Image Ratio Padder 바로가기](https://do0ori.github.io/image-ratio-padder-vanilla/)
 
 ![image-ratio-padder-preview](image-ratio-padder-preview.png)
 1. 이미지를 장치에서 업로드 할 것인지 URL을 사용할 것인지 선택하여 이미지 업로드합니다.
