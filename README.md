@@ -1,3 +1,14 @@
+> [!NOTE]  
+> **이 프로젝트는 새로운 플랫폼으로 마이그레이션되었습니다!**  
+> 성능, 확장성, 사용자 경험 향상을 위해 image-ratio-padder 프로젝트를 vanilla JS에서 React로 다시 구현하였습니다. <br>
+> 최신 버전과 업데이트는 다음 링크에서 확인하실 수 있습니다. <br>
+> <br>
+> 👉 [리포지토리 바로가기](https://github.com/do0ori/image-ratio-padder) <br>
+> 👉 [웹 애플리케이션 바로가기](https://do0ori.github.io/image-ratio-padder/) <br>
+> <br>
+> 2024.09.08
+
+
 # 🖼️ Image Ratio Padder
 사용자가 이미지, 이미지 비율, 색상을 입력하면 해당 이미지의 원본 크기를 유지하되 입력 받은 이미지 비율에 맞게 나머지 부분을 입력한 색상으로 채워주는 웹 애플리케이션입니다.
 
